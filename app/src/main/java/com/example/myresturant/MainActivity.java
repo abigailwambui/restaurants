@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mFindRestaurantsButton;
     private EditText mLocationEditText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
