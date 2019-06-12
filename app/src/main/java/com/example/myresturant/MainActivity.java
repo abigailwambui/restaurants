@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mLocationEditText = (EditText) findViewById(R.id.locationEditText);
         mMyResturantTextView = (TextView) findViewById(R.id.myResturantTextView );
-        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Heavy.otf");
-        Typeface ostrichFontButton = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Bold.otf");
-        mMyResturantTextView.setTypeface(ostrichFont);
-        mFindRestaurantsButton.setTypeface(ostrichFont);
         mFindRestaurantsButton = (Button) findViewById(R.id.findRestaurantsButton);
+        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Heavy.otf");
+        Typeface ostrichFontTwo = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Bold.otf");
+        mMyResturantTextView.setTypeface(ostrichFont);
+        mFindRestaurantsButton.setTypeface(ostrichFontTwo);
         mFindRestaurantsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
