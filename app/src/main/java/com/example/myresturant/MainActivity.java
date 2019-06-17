@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Button mFindRestaurantsButton;
     private EditText mLocationEditText;
     private TextView mmyRestaurantTextView;
@@ -29,19 +29,23 @@ public class MainActivity extends AppCompatActivity {
         Typeface ostrichFontTwo = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Bold.otf");
         mmyRestaurantTextView.setTypeface(ostrichFont);
         mFindRestaurantsButton.setTypeface(ostrichFontTwo);
-        mFindRestaurantsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
+        mFindRestaurantsButton.setOnClickListener(this);
+
+                    }
+            @Override
                 public void onClick(View view) {
+                if (view == mFindRestaurantsButton) {
                     String location = mLocationEditText.getText().toString();
                     Log.v("Zipcode:", location);
-                    Intent intent =  new Intent(MainActivity.this, RestaurantsActivity.class);
+                    Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
                     intent.putExtra("location", location);
                     startActivity(intent);
+
                 }
-            });
-
-
-
-
-    }
+            }
 }
+
+
+
+
+
