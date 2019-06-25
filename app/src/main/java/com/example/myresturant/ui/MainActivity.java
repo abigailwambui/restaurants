@@ -1,15 +1,16 @@
-package com.example.myresturant;
+package com.example.myresturant.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.myresturant.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (view == mFindRestaurantsButton) {
                     String location = mLocationEditText.getText().toString();
                     Log.v("Zipcode:", location);
-                    Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+                    Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
                     intent.putExtra("location", location);
                     startActivity(intent);
 
