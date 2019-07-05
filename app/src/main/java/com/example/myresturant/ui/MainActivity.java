@@ -1,64 +1,51 @@
 package com.example.myresturant.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myresturant.Constants;
 import com.example.myresturant.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-    private Button mFindRestaurantsButton;
-    private EditText mLocationEditText;
-    private TextView mmyRestaurantTextView;
-    private String mRecentAddress;
-
+    @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
+    @BindView(R.id.myRestaurantTextView) TextView mmyRestaurantTextView;
+    @BindView(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
-        mFindRestaurantsButton = (Button) findViewById(R.id.findRestaurantsButton);
-        mmyRestaurantTextView = (TextView) findViewById(R.id.myRestaurantTextView);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        mEditor = mSharedPreferences.edit();
+        ButterKnife.bind(this);
 
-        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Heavy.otf");
-        Typeface ostrichFontTwo = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Bold.otf");
+        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mmyRestaurantTextView.setTypeface(ostrichFont);
-        mFindRestaurantsButton.setTypeface(ostrichFontTwo);
+
         mFindRestaurantsButton.setOnClickListener(this);
+        mSavedRestaurantsButton.setOnClickListener(this);
+    }
 
-                    }
-            @Override
-                public void onClick(View view) {
-                if (view == mFindRestaurantsButton) {
-                    String location = mLocationEditText.getText().toString();
-                    addToSharedPreferences(location);
-                    Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
-                    intent.putExtra("location", location);
-                    startActivity(intent);
+    @Override
+    public void onClick(View v) {
 
-                }
-            }
+        if(v == mFindRestaurantsButton) {
+            Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
+            startActivity(intent);
+        }
 
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
+        if (v == mSavedRestaurantsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedRestaurantListActivity.class);
+            startActivity(intent);
+        }
     }
 }
-
 
 
 
